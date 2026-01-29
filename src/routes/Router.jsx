@@ -1,5 +1,5 @@
-// routes/Router.jsx
-import { Routes, Route } from "react-router-dom";
+
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -10,6 +10,7 @@ import ModelDetails from "../pages/ModelDetails";
 import Wishlist from "../pages/WishList";
 import Cart from "../pages/Cart";
 import Dashboard from "../pages/Admin/Dashboard";
+import NotFound from "../pages/NotFound"; 
 
 import ProtectedRoute from "./ProtectedRoute";
 import AdminRoute from "./AdminRoute";
@@ -22,38 +23,22 @@ export default function AppRouter() {
             <Route path="/about" element={<About />} />
             <Route path="/models" element={<Models />} />
             <Route path="/models/:id" element={<ModelDetails />} />
-
-            {/* Auth */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
-            {/* User Protected */}
-            <Route
-                path="/wishlist"
-                element={
-                    <ProtectedRoute>
-                        <Wishlist />
-                    </ProtectedRoute>
-                }
-            />
-            <Route
-                path="/cart"
-                element={
-                    <ProtectedRoute>
-                        <Cart />
-                    </ProtectedRoute>
-                }
-            />
+            {/* User Protected Routes Group */}
+            <Route element={<ProtectedRoute />}>
+                <Route path="/wishlist" element={<Wishlist />} />
+                <Route path="/cart" element={<Cart />} />
+            </Route>
 
-            {/* Admin */}
-            <Route
-                path="/admin/dashboard"
-                element={
-                    <AdminRoute>
-                        <Dashboard />
-                    </AdminRoute>
-                }
-            />
+            {/* Admin Protected Routes Group */}
+            <Route element={<AdminRoute />}>
+                <Route path="/admin/dashboard" element={<Dashboard />} />
+            </Route>
+
+            {/* Not Found */}
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 }
