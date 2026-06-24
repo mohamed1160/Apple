@@ -14,7 +14,7 @@ import NotFound from "../pages/NotFound";
 
 import ProtectedRoute from "./ProtectedRoute";
 import AdminRoute from "./AdminRoute";
-import Iphone from "../iphone/Iphone.jsx";
+// import Iphone from "../iphone/Iphone.jsx";
 
 export default function AppRouter() {
     return (
@@ -26,7 +26,7 @@ export default function AppRouter() {
             <Route path="/models/:id" element={<ModelDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/iphone" element={<Iphone />} />
+            {/* <Route path="/iphone" element={<Iphone />} /> */}
 
             {/* User Protected Routes Group */}
             <Route element={<ProtectedRoute />}>
